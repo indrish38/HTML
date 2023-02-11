@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <form>
+      <label for="targetCountry">Enter the target country code:</label>
+      <input type="text" id="targetCountry" name="targetCountry">
+
+      <label for="searchQuery">Enter the search query:</label>
+      <input type="text" id="searchQuery" name="searchQuery">
+
+      <button type="submit">Submit</button>
+    </form>
+    
+    <script>
+    //   const axios = require('axios');
+
+      // Get the API key
+      const apiKey = 'AIzaSyAlc8ASRnEjW4bJefYe4IH5QeU-6dnU-wI';
+      const maxResults = 10;
+
+      // Get the form elements
+      const form = document.querySelector('form');
+      const targetCountryInput = document.querySelector('input[name="targetCountry"]');
+      const searchQueryInput = document.querySelector('input[name="searchQuery"]');
+
+      // Handle form submit
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        // Get the target country and the search query from the form
+        const targetCountry = targetCountryInput.value;
+        const searchQuery = searchQueryInput.value;
+
+        // Make the API request
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&regionCode=${targetCountry}&q=${searchQuery}&type=video&key=${apiKey}&maxResults=${maxResults}`;
+
+        axios.get(url)
+          .then(response => {
+            const videoData = response.data.items;
+            console.log(videoData);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      });
+    </script>
+  </body>
+</html>
