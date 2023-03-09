@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic-Tac-Toe</title>
+
+    <style>
+      body {
+        margin-top: 100px;
+        margin-left: 500px;
+        background-size: cover;
+      }
+      #board {
+        border: 2px solid blue;
+        width: 500px;
+        height: 500px;
+        /* margin-top  : 50px; */
+      }
+      button {
+        /* padding: 3%; */
+        margin: 2%;
+        /* background-color: blue; */
+        width: 60px;
+        height: 60px;
+        position: static;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body align="center">
+    <script>
+        let turn = 1;
+
+        function play(id) {
+            if (id.innerHTML === "&nbsp;") {
+            if (turn % 2 == 1) {
+                id.innerHTML = "X";
+            } else {
+                id.innerHTML = "O";
+            }
+            status();
+            turn++;
+            }
+            // if (win.innerHTML === "" && B1.innerHTML === "X") {
+            //   win.innerHTML = "Player 1 Wins";
+            // } else if (win.innerHTML === "" && B2.innerHTML === "O") {
+            //     win.innerHTML = "Player 2 Wins";
+            // }
+        }
+        function status(){
+            if((B1.innerHTML=="X" && B2.innerHTML=="X" && B3.innerHTML=="X") ||
+                (B4.innerHTML=="X" && B5.innerHTML=="X" && B6.innerHTML=="X") ||
+                (B7.innerHTML=="X" && B8.innerHTML=="X" && B9.innerHTML=="X") ||
+                (B1.innerHTML=="X" && B4.innerHTML=="X" && B7.innerHTML=="X") ||
+                (B2.innerHTML=="X" && B5.innerHTML=="X" && B8.innerHTML=="X") ||
+                (B3.innerHTML=="X" && B6.innerHTML=="X" && B9.innerHTML=="X") ||
+                (B1.innerHTML=="X" && B5.innerHTML=="X" && B9.innerHTML=="X") ||
+                (B3.innerHTML=="X" && B5.innerHTML=="X" && B7.innerHTML=="X")){
+                    win.innerHTML = "Player 1 Wins";
+                }else if((B1.innerHTML=="X" && B2.innerHTML=="X" && B3.innerHTML=="X") ||
+                (B4.innerHTML=="O" && B5.innerHTML=="O" && B6.innerHTML=="O") ||
+                (B7.innerHTML=="O" && B8.innerHTML=="O" && B9.innerHTML=="O") ||
+                (B1.innerHTML=="O" && B4.innerHTML=="O" && B7.innerHTML=="O") ||
+                (B2.innerHTML=="O" && B5.innerHTML=="O" && B8.innerHTML=="O") ||
+                (B3.innerHTML=="O" && B6.innerHTML=="O" && B9.innerHTML=="O") ||
+                (B1.innerHTML=="O" && B5.innerHTML=="O" && B9.innerHTML=="O") ||
+                (B3.innerHTML=="O" && B5.innerHTML=="O" && B7.innerHTML=="O")){
+                    win.innerHTML = "Player 2 Wins";
+                }
+        }
+        function reset(){
+            for(let i=1;i<=9;i++){
+                let str="B"+i;
+                str.innerHTML="";
+            }
+        }
+    </script>
+    <div align="center" id="board">
+      <button onclick="play(B1)" id="B1">&nbsp;</button>
+      <button onclick="play(B2)" id="B2">&nbsp;</button>
+      <button onclick="play(B3)" id="B3">&nbsp;</button>
+      <br />
+      <button onclick="play(B4)" id="B4">&nbsp;</button>
+      <button onclick="play(B5)" id="B5">&nbsp;</button>
+      <button onclick="play(B6)" id="B6">&nbsp;</button>
+      <br />
+      <button onclick="play(B7)" id="B7">&nbsp;</button>
+      <button onclick="play(B8)" id="B8">&nbsp;</button>
+      <button onclick="play(B9)" id="B9">&nbsp;</button>
+      <br />
+      <h1 id="win"></h1>
+    </div>
+  </body>
+</html>
