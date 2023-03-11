@@ -63,27 +63,20 @@
                 (B3.innerHTML=="X" && B5.innerHTML=="X" && B7.innerHTML=="X")){
                     win.innerHTML = "Player 1 Wins";
                     freeze();
-            }else if((B1.innerHTML=="O" && B2.innerHTML=="O" && B3.innerHTML=="O") ||
-                (B4.innerHTML=="O" && B5.innerHTML=="O" && B6.innerHTML=="O") ||
-                (B7.innerHTML=="O" && B8.innerHTML=="O" && B9.innerHTML=="O") ||
-                (B1.innerHTML=="O" && B4.innerHTML=="O" && B7.innerHTML=="O") ||
-                (B2.innerHTML=="O" && B5.innerHTML=="O" && B8.innerHTML=="O") ||
-                (B3.innerHTML=="O" && B6.innerHTML=="O" && B9.innerHTML=="O") ||
-                (B1.innerHTML=="O" && B5.innerHTML=="O" && B9.innerHTML=="O") ||
-                (B3.innerHTML=="O" && B5.innerHTML=="O" && B7.innerHTML=="O")){
-                  win.innerHTML = "Player 2 Wins";
-                  freeze();
+            }else if ((B1.innerHTML=="O" && B2.innerHTML=="O" && B3.innerHTML=="O") ||
+                      (B4.innerHTML=="O" && B5.innerHTML=="O" && B6.innerHTML=="O") ||
+                      (B7.innerHTML=="O" && B8.innerHTML=="O" && B9.innerHTML=="O") ||
+                      (B1.innerHTML=="O" && B4.innerHTML=="O" && B7.innerHTML=="O") ||
+                      (B2.innerHTML=="O" && B5.innerHTML=="O" && B8.innerHTML=="O") ||
+                      (B3.innerHTML=="O" && B6.innerHTML=="O" && B9.innerHTML=="O") ||
+                      (B1.innerHTML=="O" && B5.innerHTML=="O" && B9.innerHTML=="O") ||
+                      (B3.innerHTML=="O" && B5.innerHTML=="O" && B7.innerHTML=="O")){
+                        win.innerHTML = "Player 2 Wins";
+                        freeze();
             }
-            else if((()=>{
-              for(i=1;i<10;i++){
-                if(document.getElementById("B"+i).innerHTML===`&nbsp;`)
-                  return false;  
-              }
-              return true;
-            })()){
+            else if(isDraw()){
               win.innerHTML = "Game Draw";
             }
-            console.log(isDraw());
           }
           function isDraw(){
             for(i=1;i<10;i++){
