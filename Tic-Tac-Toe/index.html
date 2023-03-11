@@ -8,24 +8,32 @@
 
     <style>
       body {
-        margin-top: 100px;
-        margin-left: 500px;
         background-size: cover;
       }
       #board {
-        border: 2px solid blue;
+        border: 5px solid blue;
+        background-color: antiquewhite;
         width: 500px;
         height: 600px;
-        /* margin-top  : 50px; */
+        position: fixed;
+        top: 10%;
+        left: 33%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
       button {
-        /* padding: 3%; */
         margin: 2%;
-        /* background-color: blue; */
+        color: rgb(0, 140, 255);
+        font-size: xx-large;
         width: 60px;
         height: 60px;
         position: static;
         margin-top: 50px;
+      }
+      #reset{
+        font-size: small;
+        color: red;
       }
     </style>
   </head>
@@ -35,17 +43,17 @@
 
         function play(id) {
             if (id.innerHTML === "&nbsp;") {
-            if (turn % 2 == 1) {
-                id.innerHTML = "X";
-            } else {
-                id.innerHTML = "O";
-            }
-            status();
-            turn++;
+                if (turn % 2 == 1) {
+                    id.innerHTML = "X";
+                } else {
+                    id.innerHTML = "O";
+                }
+                status();
+                turn++;
             }
         }
         function status(){
-            if((B1.innerHTML=="X" && B2.innerHTML=="X" && B3.innerHTML=="X") ||
+            if ((B1.innerHTML=="X" && B2.innerHTML=="X" && B3.innerHTML=="X") ||
                 (B4.innerHTML=="X" && B5.innerHTML=="X" && B6.innerHTML=="X") ||
                 (B7.innerHTML=="X" && B8.innerHTML=="X" && B9.innerHTML=="X") ||
                 (B1.innerHTML=="X" && B4.innerHTML=="X" && B7.innerHTML=="X") ||
@@ -54,7 +62,8 @@
                 (B1.innerHTML=="X" && B5.innerHTML=="X" && B9.innerHTML=="X") ||
                 (B3.innerHTML=="X" && B5.innerHTML=="X" && B7.innerHTML=="X")){
                     win.innerHTML = "Player 1 Wins";
-                }else if((B1.innerHTML=="X" && B2.innerHTML=="X" && B3.innerHTML=="X") ||
+                    freeze();
+            }else if((B1.innerHTML=="O" && B2.innerHTML=="O" && B3.innerHTML=="O") ||
                 (B4.innerHTML=="O" && B5.innerHTML=="O" && B6.innerHTML=="O") ||
                 (B7.innerHTML=="O" && B8.innerHTML=="O" && B9.innerHTML=="O") ||
                 (B1.innerHTML=="O" && B4.innerHTML=="O" && B7.innerHTML=="O") ||
@@ -62,31 +71,57 @@
                 (B3.innerHTML=="O" && B6.innerHTML=="O" && B9.innerHTML=="O") ||
                 (B1.innerHTML=="O" && B5.innerHTML=="O" && B9.innerHTML=="O") ||
                 (B3.innerHTML=="O" && B5.innerHTML=="O" && B7.innerHTML=="O")){
-                    win.innerHTML = "Player 2 Wins";
-                }
+                  win.innerHTML = "Player 2 Wins";
+                  freeze();
             }
-            function reset(){
-                for(let i=1;i<=9;i++){
-                    let str="B"+i;
-                    document.getElementById(str).innerHTML= `&nbsp;`;
-                }
-                win.innerHTML = "";
+            else if((()=>{
+              for(i=1;i<10;i++){
+                if(document.getElementById("B"+i).innerHTML===`&nbsp;`)
+                  return false;  
+              }
+              return true;
+            })()){
+              win.innerHTML = "Game Draw";
             }
+            console.log(isDraw());
+          }
+          function isDraw(){
+            for(i=1;i<10;i++){
+                if(document.getElementById("B"+i).innerHTML===`&nbsp;`)
+                  return false;  
+            }
+            return true;
+          }
+          function freeze(){
+              for(let i=1;i<=9;i++){
+                  let button = document.getElementById("B"+i)
+                  if(button.innerHTML=='&nbsp;')
+                    button.innerHTML= `&nbsp;&nbsp;`;
+              }
+          }
+          function reset(){
+            turn=1;
+              for(let i=1;i<=9;i++){
+                  document.getElementById("B"+i).innerHTML= `&nbsp;`;
+              }
+              win.innerHTML = "";
+          }
     </script>
+    <h1 align="center">Tic-Tac-Toe</h1>
     <div align="center" id="board">
-      <button onclick="play(B1)" id="B1">&nbsp;</button>
-      <button onclick="play(B2)" id="B2">&nbsp;</button>
-      <button onclick="play(B3)" id="B3">&nbsp;</button>
+      <button onclick="play(B1)" id="B1" class="B">&nbsp;</button>
+      <button onclick="play(B2)" id="B2" class="B">&nbsp;</button>
+      <button onclick="play(B3)" id="B3" class="B">&nbsp;</button>
       <br />
-      <button onclick="play(B4)" id="B4">&nbsp;</button>
-      <button onclick="play(B5)" id="B5">&nbsp;</button>
-      <button onclick="play(B6)" id="B6">&nbsp;</button>
+      <button onclick="play(B4)" id="B4" class="B">&nbsp;</button>
+      <button onclick="play(B5)" id="B5" class="B">&nbsp;</button>
+      <button onclick="play(B6)" id="B6" class="B">&nbsp;</button>
       <br />
-      <button onclick="play(B7)" id="B7">&nbsp;</button>
-      <button onclick="play(B8)" id="B8">&nbsp;</button>
-      <button onclick="play(B9)" id="B9">&nbsp;</button>
+      <button onclick="play(B7)" id="B7" class="B">&nbsp;</button>
+      <button onclick="play(B8)" id="B8" class="B">&nbsp;</button>
+      <button onclick="play(B9)" id="B9" class="B">&nbsp;</button>
       <br />
-      <button onclick="reset()">RESET</button>
+      <button id="reset" onclick="reset()">RESET</button>
       <h1 id="win"></h1>
     </div>
   </body>
