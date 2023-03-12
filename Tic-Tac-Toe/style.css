@@ -1,0 +1,44 @@
+body {
+  background-size: cover;
+  /* background: url("bg-img.png"); */
+  background: url("bg3.jpg");
+}
+h1{
+  font-style: italic;
+  font-family: cursive;
+  color: lightskyblue;
+}
+#board {
+  background: url("bg-img.png");
+  border-radius: 3%;
+  border: 0px solid blue;
+  box-shadow: 3px 8px 8px 0px rgba(0, 0, 0, 0.2), 0 9px 200px 0 rgba(0, 0, 0, 0.19);
+  width: 500px;
+  height: 600px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.B {
+  margin: 2%;
+  /* color: rgb(0, 140, 255); */
+  font-size: xx-large;
+  /* font-style: oblique; */
+  font-family: cursive;
+  border-radius: 15%;
+  width: 60px;
+  height: 60px;
+  position: static;
+  margin-top: 50px;
+  box-shadow: 4px 4px steelblue;
+}
+#reset {
+  width: 210px;
+  height: 60px;
+  margin-top: 45px;
+  border-radius: 5%;
+  font-size: large;
+  background-color: red;
+  color: white;
+}
